@@ -9,7 +9,7 @@ using Newtonsoft.Json.Serialization;
 
 namespace BrowserExtensionApp {
 	class Program {
-		private static string appVersion = "1.0.0";
+		private static string appVersion = "1.1.0";
 		private static JsonSerializerSettings jsonSettings = new JsonSerializerSettings {
 			ContractResolver = new DefaultContractResolver {
 				NamingStrategy = new CamelCaseNamingStrategy()
@@ -51,6 +51,9 @@ namespace BrowserExtensionApp {
 					// Build the url using the Readup protocol to launch the main app.
 					var readupAppUrl = new UriBuilder("readup://read");
 					readupAppUrl.Query = "?url=" + Uri.EscapeDataString(readArticleMessage.Data.Url);
+					if (readArticleMessage.Data.Star) {
+						readupAppUrl.Query += "&star";
+					}
 					// Attempt to open the app.
 					bool readupAppProcessCreated;
 					try {
