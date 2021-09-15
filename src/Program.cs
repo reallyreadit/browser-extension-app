@@ -74,7 +74,7 @@ namespace BrowserExtensionApp {
 						} else if (
 							RuntimeInformation.IsOSPlatform(OSPlatform.Linux)
 						) {
-							// TODO: This is untested and might need a similar workaround to the Windows process creation.
+							// xdg-open works fine with Firefox.
 							var process = Process.Start(
 								"xdg-open",
 								readupAppUrl.ToString()
